@@ -2,6 +2,8 @@
 
 This repository contains a collection of automated tests for RESTful APIs using the RestAssured library in Java. The tests are designed to validate the functionality of various API endpoints.
 
+**Disclaimer:** This is a sample project, so may miss some test cases.
+
 ## Required Software
 - Java JDK 24+
 - Maven installed and in your classpath
