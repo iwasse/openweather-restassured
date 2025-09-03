@@ -60,9 +60,7 @@ public class WeatherOverviewTests extends BaseAPI {
                 .extract().body().as(OverviewResponse.class);
 
         assertEquals(dateToday, response.getDate());
-
     }
-
 
     @ParameterizedTest(name = "days={0} should return status 400")
     @ValueSource(longs = {-1, 2})
@@ -81,6 +79,6 @@ public class WeatherOverviewTests extends BaseAPI {
 
         assertTrue(response.getMessage().contains("Invalid data depth"));
         assertEquals("date", response.getParameters().getFirst());
-
     }
+
 }

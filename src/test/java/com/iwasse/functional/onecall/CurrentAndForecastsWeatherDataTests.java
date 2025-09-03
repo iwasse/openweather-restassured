@@ -42,7 +42,6 @@ public class CurrentAndForecastsWeatherDataTests extends BaseAPI {
         assertEquals(60, responseBody.getMinutely().size());
         assertEquals(48, responseBody.getHourly().size());
         assertEquals(8, responseBody.getDaily().size());
-
     }
 
     @Test
@@ -141,6 +140,5 @@ public class CurrentAndForecastsWeatherDataTests extends BaseAPI {
                 .then()
                 .statusCode(200);
     }
-
 
 }

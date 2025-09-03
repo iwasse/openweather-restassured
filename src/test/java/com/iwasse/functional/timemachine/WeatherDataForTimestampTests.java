@@ -44,5 +44,4 @@ public class WeatherDataForTimestampTests extends BaseAPI {
                 "Please check possible time range in the product documentation page", errorMsg.getMessage());
     }
 
-
 }

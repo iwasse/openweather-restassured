@@ -20,4 +20,5 @@ public class CurrentAndForecastsWeatherDataContractTest extends BaseAPI {
         .then()
             .body(matchesJsonSchemaInClasspath("schemas/current_and_forecasts_weather_schema.json"));
     }
+
 }
