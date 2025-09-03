@@ -1,0 +1,117 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "lat": {
+      "type": "number"
+    },
+    "lon": {
+      "type": "number"
+    },
+    "timezone": {
+      "type": "string"
+    },
+    "timezone_offset": {
+      "type": "integer"
+    },
+    "data": {
+      "type": "array",
+      "items": [
+        {
+          "type": "object",
+          "properties": {
+            "dt": {
+              "type": "integer"
+            },
+            "sunrise": {
+              "type": "integer"
+            },
+            "sunset": {
+              "type": "integer"
+            },
+            "temp": {
+              "type": "number"
+            },
+            "feels_like": {
+              "type": "number"
+            },
+            "pressure": {
+              "type": "integer"
+            },
+            "humidity": {
+              "type": "integer"
+            },
+            "dew_point": {
+              "type": "number"
+            },
+            "uvi": {
+              "type": "number"
+            },
+            "clouds": {
+              "type": "integer"
+            },
+            "visibility": {
+              "type": "integer"
+            },
+            "wind_speed": {
+              "type": "number"
+            },
+            "wind_deg": {
+              "type": "integer"
+            },
+            "weather": {
+              "type": "array",
+              "items": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "main": {
+                      "type": "string"
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "icon": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "main",
+                    "description",
+                    "icon"
+                  ]
+                }
+              ]
+            }
+          },
+          "required": [
+            "dt",
+            "sunrise",
+            "sunset",
+            "temp",
+            "feels_like",
+            "pressure",
+            "humidity",
+            "dew_point",
+            "clouds",
+            "visibility",
+            "wind_speed",
+            "wind_deg",
+            "weather"
+          ]
+        }
+      ]
+    }
+  },
+  "required": [
+    "lat",
+    "lon",
+    "timezone",
+    "timezone_offset",
+    "data"
+  ]
+}

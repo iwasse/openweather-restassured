@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "lat": {
+      "type": "number"
+    },
+    "lon": {
+      "type": "number"
+    },
+    "tz": {
+      "type": "string"
+    },
+    "date": {
+      "type": "string"
+    },
+    "units": {
+      "type": "string"
+    },
+    "weather_overview": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "lat",
+    "lon",
+    "tz",
+    "date",
+    "units",
+    "weather_overview"
+  ]
+}
