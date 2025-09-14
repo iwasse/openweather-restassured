@@ -22,24 +22,25 @@ public class WeatherOverviewTests extends BaseAPI {
     @DisplayName("Check status code 200 for valid latitude and longitude")
     public void shouldReturnStatus200_WhenQueryParamsAreValid() {
         given()
-                .spec(OneCallSpecs.validLatLonQueryParamsSpec())
-                .when()
-                .get(ONECALL_OVERVIEW)
-                .then()
-                .statusCode(200);
+            .spec(OneCallSpecs.validLatLonQueryParamsSpec())
+        .when()
+            .get(ONECALL_OVERVIEW)
+        .then()
+            .statusCode(200);
     }
 
     @ParameterizedTest(name = "units={0} should return status 200 and response in {0} units")
     @ValueSource(strings = {"standard","metric","imperial"})
     public void shouldReturnStatus200_WhenUnitsAreValid(String units) {
-        OverviewResponse response = given()
-                .spec(OneCallSpecs.validLatLonQueryParamsSpec())
-                .queryParam("units", units)
+        OverviewResponse response =
+                given()
+                    .spec(OneCallSpecs.validLatLonQueryParamsSpec())
+                    .queryParam("units", units)
                 .when()
-                .get(ONECALL_OVERVIEW)
+                    .get(ONECALL_OVERVIEW)
                 .then()
-                .statusCode(200)
-                .extract().body().as(OverviewResponse.class);
+                    .statusCode(200)
+                    .extract().body().as(OverviewResponse.class);
 
         assertEquals(units, response.getUnits());
     }
@@ -50,14 +51,15 @@ public class WeatherOverviewTests extends BaseAPI {
 
         String dateToday = LocalDate.now().plusDays(days).format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 
-        OverviewResponse response = given()
-                .spec(OneCallSpecs.validLatLonQueryParamsSpec())
-                .queryParam("date", dateToday)
+        OverviewResponse response =
+                given()
+                    .spec(OneCallSpecs.validLatLonQueryParamsSpec())
+                    .queryParam("date", dateToday)
                 .when()
-                .get(ONECALL_OVERVIEW)
+                    .get(ONECALL_OVERVIEW)
                 .then()
-                .statusCode(200)
-                .extract().body().as(OverviewResponse.class);
+                    .statusCode(200)
+                    .extract().body().as(OverviewResponse.class);
 
         assertEquals(dateToday, response.getDate());
     }
@@ -68,14 +70,15 @@ public class WeatherOverviewTests extends BaseAPI {
 
         LocalDate dateToday = LocalDate.now().plusDays(days);
 
-        ErrorMessage response = given()
-                .spec(OneCallSpecs.validLatLonQueryParamsSpec())
-                .queryParam("date", dateToday.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")))
+        ErrorMessage response =
+                given()
+                    .spec(OneCallSpecs.validLatLonQueryParamsSpec())
+                    .queryParam("date", dateToday.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")))
                 .when()
-                .get(ONECALL_OVERVIEW)
+                    .get(ONECALL_OVERVIEW)
                 .then()
-                .statusCode(400)
-                .extract().body().as(ErrorMessage.class);
+                    .statusCode(400)
+                    .extract().body().as(ErrorMessage.class);
 
         assertTrue(response.getMessage().contains("Invalid data depth"));
         assertEquals("date", response.getParameters().getFirst());

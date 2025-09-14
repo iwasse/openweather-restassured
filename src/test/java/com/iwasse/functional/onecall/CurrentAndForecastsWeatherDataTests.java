@@ -18,13 +18,12 @@ public class CurrentAndForecastsWeatherDataTests extends BaseAPI {
     @Test
     @DisplayName("Check status code 200 for valid latitude and longitude")
     public void shouldReturnStatus200_WhenLatitudeAndLongitudeAreValid() {
-
         given()
-                .spec(OneCallSpecs.validLatLonQueryParamsSpec())
-                .when()
-                .get(ONECALL)
-                .then()
-                .assertThat().statusCode(200);
+            .spec(OneCallSpecs.validLatLonQueryParamsSpec())
+        .when()
+            .get(ONECALL)
+        .then()
+            .assertThat().statusCode(200);
     }
 
     @Test
@@ -32,12 +31,12 @@ public class CurrentAndForecastsWeatherDataTests extends BaseAPI {
     public void shouldReturnCorrectArraySizes_WhenLatitudeAndLongitudeAreValid() {
         OneCallResponse responseBody =
                 given()
-                        .spec(OneCallSpecs.validLatLonQueryParamsSpec())
-                        .when()
-                        .get(ONECALL)
-                        .then()
-                        .assertThat().statusCode(200)
-                        .extract().body().as(OneCallResponse.class);
+                    .spec(OneCallSpecs.validLatLonQueryParamsSpec())
+                .when()
+                    .get(ONECALL)
+                .then()
+                    .assertThat().statusCode(200)
+                    .extract().body().as(OneCallResponse.class);
 
         assertEquals(60, responseBody.getMinutely().size());
         assertEquals(48, responseBody.getHourly().size());
@@ -49,11 +48,11 @@ public class CurrentAndForecastsWeatherDataTests extends BaseAPI {
     public void shouldReturnStatus400_WhenRequiredQueryParamsAreMissing() {
         ErrorMessage errorMsg =
                 given()
-                        .when()
-                        .get(ONECALL)
-                        .then()
-                        .assertThat().statusCode(400)
-                        .extract().body().as(ErrorMessage.class);
+                .when()
+                    .get(ONECALL)
+                .then()
+                    .assertThat().statusCode(400)
+                    .extract().body().as(ErrorMessage.class);
 
         assertEquals("Nothing to geocode", errorMsg.getMessage());
     }
@@ -64,13 +63,13 @@ public class CurrentAndForecastsWeatherDataTests extends BaseAPI {
     void shouldReturnError_WhenLongitudeIsInvalid(String longitude) {
         ErrorMessage errorMsg =
                 given()
-                        .queryParam("lat", "0")
-                        .queryParam("lon", longitude)
-                        .when()
-                        .get(ONECALL)
-                        .then()
-                        .assertThat().statusCode(400)
-                        .extract().body().as(ErrorMessage.class);
+                    .queryParam("lat", "0")
+                    .queryParam("lon", longitude)
+                .when()
+                    .get(ONECALL)
+                .then()
+                    .assertThat().statusCode(400)
+                    .extract().body().as(ErrorMessage.class);
 
         assertEquals("wrong longitude", errorMsg.getMessage());
     }
@@ -81,13 +80,13 @@ public class CurrentAndForecastsWeatherDataTests extends BaseAPI {
     public void shouldReturnError_WhenLatitudeIsInvalid(String latitude) {
         ErrorMessage errorMsg =
                 given()
-                        .queryParam("lat", latitude)
-                        .queryParam("lon", "0")
-                        .when()
-                        .get(ONECALL)
-                        .then()
-                        .assertThat().statusCode(400)
-                        .extract().body().as(ErrorMessage.class);
+                    .queryParam("lat", latitude)
+                    .queryParam("lon", "0")
+                .when()
+                    .get(ONECALL)
+                .then()
+                    .assertThat().statusCode(400)
+                    .extract().body().as(ErrorMessage.class);
 
         assertEquals("wrong latitude", errorMsg.getMessage());
     }
@@ -96,12 +95,12 @@ public class CurrentAndForecastsWeatherDataTests extends BaseAPI {
     @DisplayName("Check status code 200 when all weather data parts are excluded")
     public void shouldReturnStatus200_WhenAllWeatherDataPartsAreExcluded() {
         given()
-                .spec(OneCallSpecs.validLatLonQueryParamsSpec())
-                .queryParam("exclude", "current,minutely,hourly,daily,alerts")
-                .when()
-                .get(ONECALL)
-                .then()
-                .assertThat().statusCode(200);
+            .spec(OneCallSpecs.validLatLonQueryParamsSpec())
+            .queryParam("exclude", "current,minutely,hourly,daily,alerts")
+        .when()
+            .get(ONECALL)
+        .then()
+            .assertThat().statusCode(200);
     }
 
     @ParameterizedTest(name = "exclude={0} should return 200 without excluded part")
@@ -110,13 +109,13 @@ public class CurrentAndForecastsWeatherDataTests extends BaseAPI {
     void shouldNotReturnExcludedParts_WhenValuesAreExcluded(String parts) {
         OneCallResponse response =
                 given()
-                        .spec(OneCallSpecs.validLatLonQueryParamsSpec())
-                        .queryParam("exclude", parts)
-                        .when()
-                        .get(ONECALL)
-                        .then()
-                        .statusCode(200)
-                        .extract().body().as(OneCallResponse.class);
+                    .spec(OneCallSpecs.validLatLonQueryParamsSpec())
+                    .queryParam("exclude", parts)
+                .when()
+                    .get(ONECALL)
+                .then()
+                    .statusCode(200)
+                    .extract().body().as(OneCallResponse.class);
 
         switch (parts) {
             case "current" -> assertNull(response.getCurrent());
@@ -133,12 +132,12 @@ public class CurrentAndForecastsWeatherDataTests extends BaseAPI {
     @DisplayName("Check status code 200 for valid units parameter")
     void shouldReturnStatus200_WhenUnitsParameterIsValid(String units) {
         given()
-                .spec(OneCallSpecs.validLatLonQueryParamsSpec())
-                .queryParam("units", units)
-                .when()
-                .get(ONECALL)
-                .then()
-                .statusCode(200);
+            .spec(OneCallSpecs.validLatLonQueryParamsSpec())
+            .queryParam("units", units)
+        .when()
+            .get(ONECALL)
+        .then()
+            .statusCode(200);
     }
 
 }
