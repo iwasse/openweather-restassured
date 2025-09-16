@@ -10,11 +10,11 @@ This repository contains a collection of automated tests for RESTful APIs using 
 
 
 ## Libraries Used
-- RestAssured
-- JUnit 5
-- Owner
-- Project Lombok
-- Jackson Databind
+- RestAssured: library to test REST APIs
+- JUnit 5: to support the test creation
+- Owner: to manage the property files
+- Project Lombok: to reduce boilerplate code
+- Jackson Databind: to handle JSON serialization and deserialization
 
 ## Application Under Test
 
